@@ -1,0 +1,37 @@
+sudo chmod 600 /path/to/my/key.pem
+systemctl status mysql.service
+sudo service mysql restart
+ps -A|grep mysql
+sudo pkill mysql
+
+
+CREATE DATABASE IF NOT EXISTS kindle_reviews;
+USE kindle_reviews;
+DROP TABLE IF EXISTS reviews;
+
+CREATE TABLE reviews(
+    idx INT,
+    asin CHAR(10) NOT NULL,
+    helpful varchar(500),
+    overall INT,
+    reviewvarchar(500) VARCHAR(8000),
+    reviewTime varchar(500),
+    reviewerID varchar(500),
+    reviewerName varchar(500),
+    summary varchar(500),
+    unixReviewTime varchar(500),
+	CONSTRAINT [reviews_pk] PRIMARY KEY (idx)
+);
+
+
+load data local infile 'kindle_reviews.csv' 
+into table Reviews
+fields terminated by ',' 
+enclosed by '"' 
+escaped by '"' 
+lines terminated by '\n'
+ignore 1 lines;
+
+
+SELECT * FROM reviews
+LIMIT 10;
