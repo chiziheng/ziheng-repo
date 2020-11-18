@@ -1,3 +1,4 @@
+sed -i -e 's/\r$//' Mongodb_setup_script.sh
 echo "Downloading kindle metadata"
 sudo apt-get update
 sudo apt install unzip
