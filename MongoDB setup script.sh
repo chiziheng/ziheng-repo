@@ -3,6 +3,7 @@ sudo apt-get update
 sudo apt install unzip
 #wget -c https://istd50043.s3-ap-southeast-1.amazonaws.com/meta_kindle_store.zip -O meta_kindle_store.zip
 wget -c https://github.com/chiziheng/ziheng-s-first-repo/blob/main/kindle_metadata_final.zip?raw=true -O kindle_metadata_final.zip
+echo "Unzipping metadata file"
 unzip kindle_metadata_final.zip
 echo "Installing MongoDB"
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
@@ -13,6 +14,7 @@ sudo systemctl start mongod
 echo "Openning MongoDB port for remote connection" 
 sudo sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 sudo systemctl restart mongod
+echo "Downloading mongodb commands and execute"
 wget https://github.com/chiziheng/ziheng-s-first-repo/blob/main/mongo_commands.js
 mongo < mongo_commands.js
 mongoimport --db kindle_metadata --collection kindle_metadata --file kindle_metadata_final.json --legacy
