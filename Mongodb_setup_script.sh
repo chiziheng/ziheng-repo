@@ -20,4 +20,4 @@ wget https://github.com/chiziheng/ziheng-s-first-repo/blob/main/mongo_commands.j
 mongo < mongo_commands.js
 mongoimport --db kindle_metadata --collection kindle_metadata --file kindle_metadata_final.json --legacy
 #mongo --eval kindle_metadata 'db.kindle_metadata.remove({title: { $exists: false }})'
-rm -rf kindle_metadata_final.zip mongo_commands.js
+rm -rf kindle_metadata_final.zip mongo_commands.js kindle_metadata_final.json Mongodb_setup_script.sh
