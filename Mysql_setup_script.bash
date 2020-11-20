@@ -5,7 +5,7 @@ sudo apt install unzip
 
 echo "Creating root user and assign it without password "
 sudo mysql -e 'update mysql.user set plugin = "mysql_native_password" where User="root"'
-sudo mysql -e 'create user "root"@"%" identified by ""'
+sudo mysql -e 'create user "root"@"%" identified by "&V]xM);}^$ts&9U-hC[C"'
 sudo mysql -e 'grant all privileges on *.* to "root"@"%" with grant option'
 sudo mysql -e 'flush privileges'
 sudo service mysql restart
