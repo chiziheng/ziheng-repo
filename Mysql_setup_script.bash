@@ -23,7 +23,7 @@ echo "Start downloading sql script and book review data"
 wget https://raw.githubusercontent.com/chiziheng/ziheng-s-first-repo/main/sql_commands.sql
 wget -c https://istd50043.s3-ap-southeast-1.amazonaws.com/kindle-reviews.zip -O kindle-reviews.zip
 
-echo "Executing SQL commans to create table"
+echo "Executing SQL commans to create table and unzipping data file"
 unzip kindle-reviews.zip
 sudo mysql -e 'source sql_commands.sql'
 
@@ -37,4 +37,4 @@ lines terminated by '\n'
 ignore 1 lines;
 
 echo "Finish loading data into Mysql table"
-rm -rf kindle_reviews.json kindle-reviews.zip sql_commands.sql
+rm -rf kindle_reviews.json kindle_reviews.csv kindle-reviews.zip sql_commands.sql
