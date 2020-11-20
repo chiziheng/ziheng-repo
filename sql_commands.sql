@@ -16,3 +16,11 @@ CREATE TABLE Reviews(
 	PRIMARY KEY (idx)
 );
 create index asin_idx on Reviews(asin);
+
+load data local infile 'kindle_reviews.csv' 
+into table Reviews
+fields terminated by ',' 
+enclosed by '"' 
+escaped by '"' 
+lines terminated by '\n'
+ignore 1 lines;
