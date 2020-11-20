@@ -9,11 +9,13 @@ sudo mysql -e 'create user "root"@"%" identified by "&V]xM);}^$ts&9U-hC[C"'
 sudo mysql -e 'grant all privileges on *.* to "root"@"%" with grant option'
 sudo mysql -e 'flush privileges'
 sudo service mysql restart
+wait
 
 echo "Opening the port for Mysql for remote connect"
 sudo systemctl stop mysql
 sudo sed /etc/mysql/mysql.conf.d/mysqld.cnf -i 's/127.0.0.1/0.0.0.0/g'
 sudo systemctl restart mysql
+wait
 #systemctl status mysql.service
 #sudo service mysql restart
 #ps -A|grep mysql
@@ -26,6 +28,7 @@ wget -c https://istd50043.s3-ap-southeast-1.amazonaws.com/kindle-reviews.zip -O 
 echo "Executing SQL commans to create table and unzipping data file"
 unzip kindle-reviews.zip
 sudo mysql -e 'source sql_commands.sql'
+wait
 
 echo "Finish loading data into Mysql table"
 rm -rf kindle_reviews.json kindle_reviews.csv kindle-reviews.zip sql_commands.sql
