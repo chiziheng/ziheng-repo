@@ -15,7 +15,7 @@ sudo systemctl start mongod
 echo "Openning MongoDB port for remote connection" 
 sudo sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 sudo systemctl restart mongod
-wait #wait for restart to finish
+sleep 5 #wait for restart to finish
 echo "Downloading mongodb commands and execute"
 wget https://raw.githubusercontent.com/chiziheng/ziheng-s-first-repo/main/mongo_commands.js
 mongo < mongo_commands.js
