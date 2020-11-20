@@ -21,5 +21,6 @@ wget https://raw.githubusercontent.com/chiziheng/ziheng-s-first-repo/main/mongo_
 mongo < mongo_commands.js
 mongoimport --db kindle_metadata --collection kindle_metadata --file kindle_metadata_final.json --legacy
 sudo sed -i 's/#security:/security\n  authantication: enabled/g' /etc/mongod.conf
+sudo systemctl restart mongod
 #mongo --eval kindle_metadata 'db.kindle_metadata.remove({title: { $exists: false }})'
 rm -rf kindle_metadata_final.zip mongo_commands.js kindle_metadata_final.json Mongodb_setup_script.sh
