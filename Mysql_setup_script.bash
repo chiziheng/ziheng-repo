@@ -34,3 +34,4 @@ wait
 
 echo "Finish loading data into Mysql table"
 rm -rf kindle_reviews.json kindle_reviews.csv kindle-reviews.zip sql_commands.sql
+echo "Mysql setup finished"
