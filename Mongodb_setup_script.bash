@@ -32,3 +32,5 @@ sudo systemctl restart mongod
 rm -rf kindle_metadata_final.zip mongo_commands.js kindle_metadata_final.json Mongodb_setup_script.sh
 
 echo "MongoDB setup finished"
+
+#sed -i -e 's/\r$//' Mongodb_setup_script.sh
