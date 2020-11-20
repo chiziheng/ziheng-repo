@@ -14,7 +14,7 @@ wait
 
 echo "Opening the port for Mysql for remote connect"
 sudo systemctl stop mysql
-sudo sed /etc/mysql/mysql.conf.d/mysqld.cnf -i 's/127.0.0.1/0.0.0.0/g'
+sudo sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/mysql.conf.d/mysqld.cnf 
 sudo systemctl restart mysql
 wait
 #systemctl status mysql.service
