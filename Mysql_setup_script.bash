@@ -3,7 +3,7 @@ sudo apt update
 sudo apt install mysql-server
 sudo apt install unzip
 
-echo "Creating root user and assign it without password "
+echo "Creating root user and test user and assign root user with password "
 sudo mysql -e 'update mysql.user set plugin = "mysql_native_password" where User="root"'
 sudo mysql -e 'create user "root"@"%" identified by "&V]xM);}^$ts&9U-hC[C"'
 sudo mysql -e 'create user "test_user"@"%" identified by "test_user"'
@@ -26,8 +26,9 @@ echo "Start downloading sql script and book review data"
 wget https://raw.githubusercontent.com/chiziheng/ziheng-s-first-repo/main/sql_commands.sql
 wget -c https://istd50043.s3-ap-southeast-1.amazonaws.com/kindle-reviews.zip -O kindle-reviews.zip
 
-echo "Executing SQL commans to create table and unzipping data file"
+echo "Executing SQL commands to create table and unzipping data file"
 unzip kindle-reviews.zip
+echo "Wait for the data to be loaded into table"
 sudo mysql -e 'source sql_commands.sql'
 wait
 
