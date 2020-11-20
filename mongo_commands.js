@@ -10,6 +10,7 @@ db.createUser({
   });
 use kindle_metadata
 db.createCollection("kindle_metadata")
+db.createUser({user:'test_user',pwd:'test_user',roles:[{role:'readWrite',db:'kindle_metadata'},{role:'readWrite',db:'web_logs'}]})
 use web_logs
 db.createCollection("web_logs")
 db.createUser({user:'test_user',pwd:'test_user',roles:[{role:'readWrite',db:'kindle_metadata'},{role:'readWrite',db:'web_logs'}]})
