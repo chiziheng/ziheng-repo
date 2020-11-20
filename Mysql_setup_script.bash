@@ -27,14 +27,5 @@ echo "Executing SQL commans to create table and unzipping data file"
 unzip kindle-reviews.zip
 sudo mysql -e 'source sql_commands.sql'
 
-echo "Loading data into table"
-load data local infile 'kindle_reviews.csv' 
-into table Reviews
-fields terminated by ',' 
-enclosed by '"' 
-escaped by '"' 
-lines terminated by '\n'
-ignore 1 lines;
-
 echo "Finish loading data into Mysql table"
 rm -rf kindle_reviews.json kindle_reviews.csv kindle-reviews.zip sql_commands.sql
