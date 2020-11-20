@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS kindle_reviews;
 USE kindle_reviews;
 
-DROP TABLE IF EXISTS reviews;
+DROP TABLE IF EXISTS Reviews;
 CREATE TABLE Reviews(
     idx INT NOT NULL AUTO_INCREMENT, 
     asin CHAR(10) NOT NULL,
