@@ -16,10 +16,9 @@ for instance in instances:
 print('Instances running for group15 are',running_instances)
 
 #Terminating instances based on instance id
-print("Terminating group15 instances, please wait")
+print("Terminating group15 instances, please wait...")
 ec2_re.instances.filter(InstanceIds=running_instances).terminate()
-#ec2.terminate_instances(InstanceIds=running_instances)
-waiter.wait(InstanceIds=running_instances)
+waiter.wait(InstanceIds=running_instances)  
 print("group15 instances terminated")
 
 #Get security groups names and ids and store in dictionary

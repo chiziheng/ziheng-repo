@@ -1,6 +1,7 @@
 import boto3
 import botocore
 from botocore.exceptions import ClientError
+import time
 session=boto3.session.Session(profile_name="default")
 
 ec2 = session.client('ec2')
@@ -125,7 +126,8 @@ Test_Mysql_Instance=ec2.run_instances(
     ImageId='ami-0f82752aa17ff8f5d',
     InstanceType='t1.micro',
     KeyName='group15_key',
-    SecurityGroups=['Mysql instance security group']
+    SecurityGroups=['Mysql instance security group'],
+    TagSpecifications=[{'ResourceType': 'instance','Tags': [{'Key': 'name','Value': 'Mysql instance'},]}]
 )
 print("Mysql instance has been created")
 
@@ -135,7 +137,8 @@ Test_Mongodb_Instance=ec2.run_instances(
     ImageId='ami-0f82752aa17ff8f5d',
     InstanceType='t1.micro',
     KeyName='group15_key',
-    SecurityGroups=['Mongodb instance security group']
+    SecurityGroups=['Mongodb instance security group'],
+    TagSpecifications=[{'ResourceType': 'instance','Tags': [{'Key': 'name','Value': 'Mongodb instance'},]}]
 )
 print("Mongodb instance has been created")
 
@@ -145,7 +148,22 @@ Test_Frontend_Instance=ec2.run_instances(
     ImageId='ami-0f82752aa17ff8f5d',
     InstanceType='t1.micro',
     KeyName='group15_key',
-    SecurityGroups=['Frontend instance security group']
+    SecurityGroups=['Frontend instance security group'],
+    TagSpecifications=[{'ResourceType': 'instance','Tags': [{'Key': 'name','Value': 'Frontend instance'},]}]
 )
 print("Frontend instance has been created")
+print("Wait for new instances to be ready")
+time.sleep(60)
+
+# Retrive public ips for three instances
+running_instances=[]
+public_ips={}
+instances = ec2_re.instances.filter(
+    Filters=[{'Name': 'instance-state-name', 'Values': ['running']}])
+for instance in instances:
+    running_instances.append(instance.id)
+    public_ips[instance.tags[0]['Value']]=instance.public_ip_address
+print('Instances IDs are ', running_instances)
+print('Instances ips for group15 are',public_ips)
+
 
